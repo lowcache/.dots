@@ -1,0 +1,83 @@
+/*
+Define your quick links for the statusbar here.
+YOu can use icons from here https://fontawesome.com/search?ic=free
+You can reload waybar with SUPER + SHIFT + B
+*/
+{
+    "custom/quicklink_browser": {
+        "format": "",
+        "on-click": "~/.config/ml4w/settings/browser.sh",
+        "tooltip-format": "Open Browser"
+    },
+    "custom/quicklink_filemanager": {
+        "format": "",
+        "on-click": "~/.config/ml4w/settings/filemanager.sh",
+        "tooltip-format": "Open Filemanager"
+    },
+    "custom/quicklink_email": {
+        "format": "",
+        "on-click": "~/.config/ml4w/settings/email.sh",
+        "tooltip-format": "Open Email Client"
+    },
+    "custom/quicklink_chromium": {
+        "format": "",
+        "on-click": "chromium",
+        "tooltip-format": "Open Chromium"
+    },
+    "custom/quicklink_edge": {
+        "format": "",
+        "on-click": "~/.config/ml4w/settings/browser.sh",
+        "tooltip-format": "Open Edge"
+    },
+    "custom/quicklink_firefox": {
+        "format": "",
+        "on-click": "firefox",
+        "tooltip-format": "Open Firefox"
+    },
+    "custom/quicklink_thunderbird": {
+        "format": "",
+        "on-click": "thunderbird",
+        "tooltip-format": "Open Thunderbird"
+    },
+    "custom/quicklink_calculator": {
+        "format": "",
+        "on-click": "~/.config/ml4w/settings/calculator.sh",
+        "tooltip-format": "Open calculator"
+    },
+    "custom/quicklink_editor": {
+    	"format": "",    	
+    	"on-click": "~/.config/ml4w/settings/editor.sh",
+    	"tooltip-format": "Open Text Editor"
+    },
+    "custom/quicklink_games": {
+	"format": "",
+	"on-click": "~/.config/ml4w/settings/games.sh",
+	"tooltip-format": "Steamed Clams"
+    },
+    "custom/quicklink_terminal": {
+    	"format": "",
+    	"on-click": "~/.config/ml4w/settings/terminal.sh",
+    	"tooltip-format": "Open Terminal"
+    },
+    "custom/quicklink_kritagimpshop": {
+    	"format": " ", 
+    	"on-click": "~/.config/ml4w/settings/image_editor.sh",
+    	"tooltop-format": "Open Krita/Gimp/Photoshop"
+    },
+    "custom/quicklinkempty": {
+    },
+    "group/quicklinks": {
+        "orientation": "horizontal",
+        "modules": [
+
+            "custom/quicklinkempty",
+            "custom/quicklink_terminal",
+            "custom/quicklink_browser",
+  	    "custom/quicklink_editor",
+            "custom/quicklink_filemanager",
+            "custom/quicklink_games",
+            "custom/quicklink_kritagimpshop",
+            "custom/quicklinkempty"
+        ]
+    }
+}
