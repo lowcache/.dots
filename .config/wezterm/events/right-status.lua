@@ -91,6 +91,7 @@ local function battery_info()
    return charge, icon .. ' '
 end
 
+
 ---@param opts? Event.RightStatusOptions Default: {date_format = '%a %H:%M:%S'}
 M.setup = function(opts)
    local valid_opts, err = EVENT_OPTS.validator:validate(opts or {})
@@ -98,7 +99,6 @@ M.setup = function(opts)
    if err then
       wezterm.log_error(err)
    end
-
    wezterm.on('update-right-status', function(window, _pane)
       local battery_text, battery_icon = battery_info()
 

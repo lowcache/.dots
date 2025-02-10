@@ -8,9 +8,12 @@ local mod = {}
 if platform.is_mac then
    mod.SUPER = 'SUPER'
    mod.SUPER_REV = 'SUPER|CTRL'
-elseif platform.is_win or platform.is_linux then
+elseif platform.is_win then
    mod.SUPER = 'ALT' -- to not conflict with Windows key shortcuts
    mod.SUPER_REV = 'ALT|CTRL'
+elseif platform.is_linux then
+   mod.SUPER = 'CTRL' --to not conflict weith hyprland  keybinds
+   mod.SUPER_REV = 'CTRL|ALT'
 end
 
 -- stylua: ignore
@@ -158,12 +161,12 @@ local keys = {
    -- panes --
    -- panes: split panes
    {
-      key = [[\]],
+      key = [[']],
       mods = mod.SUPER,
       action = act.SplitVertical({ domain = 'CurrentPaneDomain' }),
    },
    {
-      key = [[\]],
+      key = [[']],
       mods = mod.SUPER_REV,
       action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }),
    },
@@ -235,7 +238,7 @@ local mouse_bindings = {
    -- Ctrl-click will open the link under the mouse cursor
    {
       event = { Up = { streak = 1, button = 'Left' } },
-      mods = 'CTRL',
+      mods = 'ALT',
       action = act.OpenLinkAtMouseCursor,
    },
 }
