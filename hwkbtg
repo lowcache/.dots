@@ -1,0 +1,88 @@
+
+##---------------------------------------------
+#
+# HWKBTG - HardWare KeyBoard ToGgle
+# For Laptop Users Running Arch Linux & Hyprland
+# Who wish to temporarily toggle on/off their 
+# laptops' hardware keyboard.
+#
+##----------------------------------------------
+# https://github.com/lowcache/hwkbtg
+# author: dropdead.Redd
+# credits: This is a more robust, improved, updated, and continuation of an original script found here: https://github.com/hyprwm/Hyprland/discussions/4283#discussioncomment-8648109
+# license: GPL-3.0
+##-----------------------------------------------
+#
+# This Bash script requires edits mnade to the 
+# Hyprland config found at ~/.config/hypr/...
+# to work properly. See README.md for info 
+#
+##-----------------------------------------------
+
+export STATUS_FILE="$XDG_RUNTIME_DIR/keyboard.status"
+STATUS="false"
+# shellcheck disable=SC2016
+enable_keyboard() {
+   
+    printf "true" >"$STATUS_FILE"
+    STATUS="true"
+    hyprctl keyword 'device[at-translated-set-2-keyboard]:enabled 1' && notify-send -u normal "keyboard ENABLED"
+}
+# shellcheck disable=SC2016
+disable_keyboard() {
+
+    printf "false" >"$STATUS_FILE"
+    hyprctl keyword 'device[at-translated-set-2-keyboard]:enabled 0' && notify-send -u normal "Keyboard DISABLED"
+    
+}
+# shellcheck disable=SC2016
+no_status_file() {
+    
+    printf "true" >"$STATUS_FILE"
+    STATUS="true"
+    notify-send -u normal "Status File Created."
+    hyprctl keyword 'device[at-translated-set-2-keyboard]:enabled 1' && notify-send -u normal "Keyboard ENABLED"
+}
+
+check_file() {
+
+	if ! [ -f "$STATUS_FILE" ] || [ $STATUS = "false" ]; then
+  		no_status_file
+	else
+  		if [ "$(cat "$STATUS_FILE")" = "true" ] || [ "$STATUS" = "true" ]; then
+    		disable_keyboard
+  		elif [ "$(cat "$STATUS_FILE")" = "false" ] || [ "$STATUS" = "false" ]; then
+    		enable_keyboard
+  		fi
+	fi
+}
+
+usage () { 
+	cat <<EOF
+Usage:  hwkbtg {option} 
+        hwkbtg -d|-e|-h
+
+-d, --disabled  ...        Disables Laptop Keyboard
+-e, --enabled   ...        Enables Laptop Keyboard
+-h, --help      ...        Displays this Help Message
+
+hwkbtg cannot parse more than one option.
+Examples:
+$ hwkbtg      = correct.
+$ hwkbtg -d   = correct.
+$ hwkbtg -dh  = INCORRECT.
+EOF
+}
+
+
+
+while getopts ":deh" args; do
+	case $args in
+		d  ) disable_keyboard;;
+		e  ) enable_keyboard;;
+		h  ) usage; exit 0;;
+		/? ) usage; exit 1;;
+		:  ) check_file;;
+		*  ) usage;;
+	esac
+done
