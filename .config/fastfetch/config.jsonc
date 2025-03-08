@@ -4,7 +4,8 @@
   "logo": {
       "source": "/home/dropdead/dotfiles/.config/fastfetch/pent.bin",
       "height": 250,
-      "width": 250
+      "width": 250,
+      "position": "right"
   },
   "display": {
         "separator": " ➜  "

@@ -1,8 +1,4 @@
-/*
-Define your quick links for the statusbar here.
-YOu can use icons from here https://fontawesome.com/search?ic=free
-You can reload waybar with SUPER + SHIFT + B
-*/
+
 {
     "custom/quicklink_browser": {
         "format": "",
