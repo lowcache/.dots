@@ -2,8 +2,8 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/dropdead/.gtkrc-2.0.mine"
-gtk-theme-name="catppuccin-latte-rosewater-standard+default"
-gtk-icon-theme-name="Papirus-kanagawa"
+gtk-theme-name="Wallbash-Gtk"
+gtk-icon-theme-name="Papirus-Dark"
 gtk-font-name="IBM Plex Sans 11"
 gtk-cursor-theme-name="Breeze_Light"
 gtk-cursor-theme-size=24

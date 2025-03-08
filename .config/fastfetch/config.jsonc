@@ -2,9 +2,10 @@
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
-      "source": "/home/dropdead/Pictures/trmpentagram.png",
+      "source": "/home/dropdead/dotfiles/.config/fastfetch/pent.bin",
       "height": 250,
-      "width": 250
+      "width": 250,
+      "position": "right"
   },
   "display": {
         "separator": " ➜  "
