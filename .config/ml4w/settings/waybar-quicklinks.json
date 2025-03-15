@@ -68,6 +68,7 @@
 
             "custom/quicklinkempty",
             "custom/quicklink_terminal",
+            "custom/quicklink_calculator",
             "custom/quicklink_browser",
   	    "custom/quicklink_editor",
             "custom/quicklink_filemanager",

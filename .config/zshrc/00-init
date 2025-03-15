@@ -18,3 +18,9 @@ export EDITOR=nvim
 export PATH="/usr/lib/ccache/bin/:$PATH"
 export ZSH=${ZSH:-${HOME}/dotfiles/.config/zshrc}
 
+if ! gpg-agent --status > /dev/null 2>&1; then
+  gpg-agent --options "${HOME}/.gnupg/gpg-agent.conf" --daemon
+  if [[ -n "$(gpgconf --list-dirs agent-socket)" ]]; then
+        export GPG_AGENT_INFO
+  fi
+fi

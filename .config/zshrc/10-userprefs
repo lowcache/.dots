@@ -16,11 +16,13 @@
 # confirmity
 confirm() {
     local answer
-    echo -ne "WARNING: Are you sure you want to '${YELLOW}$*${NC}' [yN]? "
+    echo -ne "zsh: sure you want to run '$*' [yN]? "
     read -q answer
         echo
     if [[ "${answer}" =~ ^[Yy]$ ]]; then
         command "${@}"
+    else
+        return 1
     fi
 }
 
@@ -28,25 +30,19 @@ confirm_wrapper() {
     if [ "$1" = '--root' ]; then
         local as_root='true'
         shift
-    elif [ "$1" = '--user' ]; then
-        local as_user='true'
-        shift
-    else 
-        exit 1
     fi
-    
+
     local prefix=''
+
     if [ "${as_root}" = 'true' ] && [ "${USER}" != 'root' ]; then
         prefix="sudo"
-    elif [ "${as_user}" = 'true' ]; then
-        prefix='shift'
     fi
     confirm ${prefix} "$@"
 }
+
 poweroff() { confirm_wrapper --root $0 "$@"; }
 reboot() { confirm_wrapper --root $0 "$@"; }
-hibernate() { confirm_wrapper --root $0 "$@"; }
-reload() { local comm=$(exec "$SHELL" "$@"); confirm_wrapper --user $0 ${comm}; }
+reload() { exec "${SHELL}" "$@" }
 
 # Check if we can read given files and source those we can.
 function xsource () {
@@ -74,7 +70,23 @@ function xcat () {
     return 0
 }
 
+dot_progress() {
+    # Fancy progress function from Landley's Aboriginal Linux.
+    # Useful for long rm, tar and such.
+    # Usage:
+    #     rm -rfv /foo | dot_progress
+    local i='0'
+    local line=''
 
+    while read line; do
+        i="$((i+1))"
+        if [ "${i}" = '25' ]; then
+            printf '.'
+            i='0'
+        fi
+    done
+    printf '\n'
+}
 
 function check_com () {
     emulate -L zsh

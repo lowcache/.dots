@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+
+# Check sudo
+if [[ $EUID -ne 0 ]]; then
+  SUDO='sudo '
+else
+  SUDO=''
+fi
+
+# Function to check internet connectivity
+check_internet() {
+  if command -v curl &> /dev/null; then
+    if $SUDO curl -s --head https://www.google.com | grep "200 OK" > /dev/null; then
+      return 0 # Connected
+    else
+      return 1 # Not connected
+    fi
+  else
+      echo "curl is not installed"
+      return 1
+  fi
+}
+
+# Function to disconnect Wi-Fi
+disconnect_wifi() {
+  if command -v wpa_cli &> /dev/null; then
+    $SUDO wpa_cli disconnect
+    sleep 2 # Give time to disconnect
+    return 0
+  else
+    echo "wpa_cli is not installed"
+    return 1
+  fi
+}
+
+# Function to reconnect Wi-Fi
+reconnect_wifi() {
+  if command -v wpa_cli &> /dev/null; then
+    $SUDO wpa_cli reconnect
+    sleep 5 # Give time to reconnect
+    if check_internet ; then
+        return 0
+    else
+        echo "Failed to reconnect"
+        return 1
+    fi
+
+  else
+    echo "wpa_cli is not installed"
+    return 1
+  fi
+}
+
+# Main script logic
+if check_internet; then
+  echo "Internet connection detected. Disconnecting..."
+  if disconnect_wifi; then
+    echo "Wi-Fi disconnected."
+    gpg --full-generate-key --expert
+    if reconnect_wifi; then
+        echo "Wi-Fi reconnected."
+        exit 0
+    else
+        exit 1
+    fi
+
+  else
+    echo "Failed to disconnect Wi-Fi."
+    exit 1
+  fi
+else
+  echo "No internet connection detected. Generating GPG key..."
+  gpg --full-generate-key --expert
+  exit 0
+fi
