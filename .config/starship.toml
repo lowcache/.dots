@@ -1,23 +1,23 @@
-    "$schema" = 'https://starship.rs/config-schema.json'
+     "$schema" = 'https://starship.rs/config-schema.json'
 right_format = """
-[ ](color_bg1)\
+[ ](color_fg)\
 $directory\
-[](color_bg1)
+[](color_fg)
 """
 format = """
-[](color_fg0)\
+[](color_fg)\
 $time\
-[](fg:color_fg0 bg:color_fg)\
-$memory_usage\
 [](fg:color_fg bg:color_fg0)\
+$memory_usage\
+[](fg:color_fg0 bg:color_fg)\
 $git_branch\
 $git_status\
-[](fg:color_fg0 bg:color_fg)\
+[](fg:color_fg bg:color_fg0)\
 $conda\
 $python\
-[](fg:color_fg bg:color_fg0)\
+[](fg:color_fg0 bg:color_fg)\
 $golang\
-[ ](color_fg0)\
+[ ](color_fg)\
 $line_break\
 $character"""
 
@@ -92,7 +92,7 @@ style_root = "bg:color_fg1 fg:color_rwater"
 format = '[ root ]($style)'
 
 [directory]
-style = "fg:color_fg0 bg:color_bg1"
+style = "fg:color_fg0 bg:color_fg"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = " …/"
@@ -106,12 +106,12 @@ truncation_symbol = " …/"
 
 [git_branch]
 symbol = "  "
-style = "bg:color_fg0"
-format = '[[ $symbol $branch ](fg:color_fg bg:color_fg0)]($style)'
+style = "bg:color_fg"
+format = '[[ $symbol $branch ](fg:color_fg0 bg:color_fg)]($style)'
 
 [git_status]
-style = "bg:color_fg0"
-format = '[[($all_status$ahead_behind )](fg:color_fg bg:color_fg0)]($style)'
+style = "bg:color_fg"
+format = '[[($all_status$ahead_behind )](fg:color_fg0 bg:color_fg)]($style)'
 
 [golang]
 symbol = "  "
@@ -130,14 +130,14 @@ format = '[[ $symbol( $environment) ](fg:color_fg0 bg:color_fg)]($style)'
 [time]
 disabled = false
 time_format = "(%a) %I:%M%P"
-style = "bg:color_fg0"
-format = '[[$time ](fg:color_bg1 bg:color_fg0)]($style)'
+style = "bg:color_fg"
+format = '[[$time ](fg:color_fg0 bg:color_fg)]($style)'
 
 [memory_usage]
 disabled = false
 threshold = -1
-format = '[[ 󰐿 :$ram_pct 󰘛 :$swap_pct ](fg:color_fg0 bg:color_fg)]($style)'
-style = "bg:color_fg"
+format = '[[ 󰐿 :$ram_pct 󰘛 :$swap_pct ](fg:color_fg bg:color_fg0)]($style)'
+style = "bg:color_fg0"
 
 [line_break]
 disabled = false

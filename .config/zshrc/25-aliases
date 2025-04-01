@@ -202,3 +202,6 @@ alias jctl="journalctl -p 3 -xb"
 # Recent installed packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 
+# Wireguard
+alias anon='wg-quick up vpnac'
+alias kpub='wg-quick down vpnac'
