@@ -12,12 +12,11 @@ $memory_usage\
 [](fg:color_fg0 bg:color_fg)\
 $git_branch\
 $git_status\
-[](fg:color_fg bg:color_fg0)\
 $conda\
 $python\
-[](fg:color_fg0 bg:color_fg)\
+[](fg:color_fg bg:color_fg0)\
 $golang\
-[ ](color_fg)\
+[ ](color_fg0)\
 $line_break\
 $character"""
 
@@ -107,25 +106,25 @@ truncation_symbol = " …/"
 [git_branch]
 symbol = "  "
 style = "bg:color_fg"
-format = '[[ $symbol $branch ](fg:color_fg0 bg:color_fg)]($style)'
+format = '[[ $symbol $branch ](fg:color_blue2 bg:color_fg)]($style)'
 
 [git_status]
 style = "bg:color_fg"
-format = '[[($all_status$ahead_behind )](fg:color_fg0 bg:color_fg)]($style)'
+format = '[[($all_status$ahead_behind )](fg:color_blue2 bg:color_fg)]($style)'
 
 [golang]
 symbol = "  "
 style = "bg:color_fg0"
-format = '[[ $symbol( $version) ](fg:color_fg bg:color_fg0)]($style)'
+format = '[[ $symbol( $version) ](fg:color_teal bg:color_fg0)]($style)'
 
 [python]
 symbol = "  "
 style = "bg:color_fg"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_fg)]($style)'
+format = '[[ $symbol( $version) ](fg:color_green bg:color_fg)]($style)'
 
 [conda]
 style = "bg:color_fg"
-format = '[[ $symbol( $environment) ](fg:color_fg0 bg:color_fg)]($style)'
+format = '[[ $symbol( $environment) ](fg:color_green bg:color_fg)]($style)'
 
 [time]
 disabled = false

@@ -23,34 +23,29 @@ local attr = Cells.attr
 
 local M = {}
 
-local ICON_SEPARATOR = nf.oct_dash
-local ICON_DATE = nf.fa_calendar
+local ICON_SEPARATOR = nf.md_razor_single_edge
+local ICON_DATE = nf.md_clock_outline
 
 ---@type string[]
 local discharging_icons = {
-   nf.md_battery_10,
-   nf.md_battery_20,
-   nf.md_battery_30,
-   nf.md_battery_40,
-   nf.md_battery_50,
-   nf.md_battery_60,
-   nf.md_battery_70,
-   nf.md_battery_80,
-   nf.md_battery_90,
-   nf.md_battery,
+   nf.md_hexagon_ouline,
+   nf.md_hexagon_slice_1,
+   nf.md_hexagon_slice_2,
+   nf.md_hexagon_slice_3,
+   nf.md_hexagon_slice_4,
+   nf.md_hexagon_slice_5,
+   nf.md_hexagon_slice_6,
+   nf.md_hexagon,  
 }
 ---@type string[]
 local charging_icons = {
-   nf.md_battery_charging_10,
-   nf.md_battery_charging_20,
-   nf.md_battery_charging_30,
-   nf.md_battery_charging_40,
-   nf.md_battery_charging_50,
-   nf.md_battery_charging_60,
-   nf.md_battery_charging_70,
-   nf.md_battery_charging_80,
-   nf.md_battery_charging_90,
-   nf.md_battery_charging,
+   nf.md_hexagon_ouline,
+   nf.md_hexagon_slice_1,
+   nf.md_hexagon_slice_2,
+   nf.md_hexagon_slice_3,
+   nf.md_hexagon_slice_4,
+   nf.md_hexagon_slice_5,
+   nf.md_hexagon_slice_6,
 }
 
 ---@type table<string, Cells.SegmentColors>
@@ -78,7 +73,7 @@ local function battery_info()
    local icon = ''
 
    for _, b in ipairs(wezterm.battery_info()) do
-      local idx = umath.clamp(umath.round(b.state_of_charge * 10), 1, 10)
+      local idx = umath.clamp(umath.round(b.state_of_charge * 7), 1, 7)
       charge = string.format('%.0f%%', b.state_of_charge * 100)
 
       if b.state == 'Charging' then
@@ -92,7 +87,7 @@ local function battery_info()
 end
 
 
----@param opts? Event.RightStatusOptions Default: {date_format = '%a %H:%M:%S'}
+---@param opts? Event.RightStatusOptions Default: {date_format = '%a %I:%M%p'}
 M.setup = function(opts)
    local valid_opts, err = EVENT_OPTS.validator:validate(opts or {})
 

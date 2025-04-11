@@ -40,3 +40,5 @@ fi
 
 
 
+
+. "$HOME/.local/share/../bin/env"
