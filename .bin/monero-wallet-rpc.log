@@ -1,0 +1,51 @@
+2025-03-25 12:45:40.626	    7f87e80dcc40	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-03-25 12:45:40.626	    7f87e80dcc40	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-03-25 12:45:40.626	    7f87e80dcc40	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-03-25 12:45:40.626	    7f87e80dcc40	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-03-25 12:45:40.626	    7f87e80dcc40	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to /home/dropdead/.local/share/torbrowser/tbb/x86_64/tor-browser/Browser/Downloads/xms/bin/monero-wallet-rpc.log
+2025-03-25 12:45:40.627	    7f87e80dcc40	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4618	Loading wallet...
+2025-03-25 12:45:43.456	    7f87e80dcc40	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:6119	Loaded wallet keys file, with public address: 45UyG28RPtVchrGoHVZwPjRGNY49rDC29Dy8Z45pH1Xrh1QYkFPgP1yYpopjsmi7sMWwBH34LpfyjAepg9Mr6X1PFj7YKtx
+2025-03-25 12:45:53.776	    7f87e80dcc40	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):34775
+2025-03-25 12:45:54.662	    7f87e80dcc40	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4690	Starting wallet RPC server
+2025-03-25 12:51:47.362	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-25 12:58:22.944	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-25 13:20:24.303	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-25 14:42:21.301	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-25 14:46:57.504	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-25 14:55:59.164	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-25 14:58:48.844	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-25 15:08:15.002	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-25 15:10:42.338	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-25 15:18:42.383	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-25 15:26:19.050	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-25 15:42:14.244	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-25 15:42:15.650	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-27 13:16:02.813	    77f8ba101c40	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-03-27 13:16:02.814	    77f8ba101c40	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-03-27 13:16:02.814	    77f8ba101c40	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-03-27 13:16:02.814	    77f8ba101c40	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-03-27 13:16:02.814	    77f8ba101c40	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to /home/dropdead/.local/share/torbrowser/tbb/x86_64/tor-browser/Browser/Downloads/xms/bin/monero-wallet-rpc.log
+2025-03-27 13:16:02.814	    77f8ba101c40	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4618	Loading wallet...
+2025-03-27 13:16:04.517	    77f8ba101c40	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:6119	Loaded wallet keys file, with public address: 45UyG28RPtVchrGoHVZwPjRGNY49rDC29Dy8Z45pH1Xrh1QYkFPgP1yYpopjsmi7sMWwBH34LpfyjAepg9Mr6X1PFj7YKtx
+2025-03-27 13:16:12.057	    77f8b68f36c0	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-27 13:16:24.260	    77f8ba101c40	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):33704
+2025-03-27 13:16:26.026	    77f8ba101c40	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4690	Starting wallet RPC server
+2025-03-27 13:17:06.177	    70613a331c40	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-03-27 13:17:06.177	    70613a331c40	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-03-27 13:17:06.177	    70613a331c40	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-03-27 13:17:06.177	    70613a331c40	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-03-27 13:17:06.177	    70613a331c40	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to /home/dropdead/.local/share/torbrowser/tbb/x86_64/tor-browser/Browser/Downloads/xms/bin/monero-wallet-rpc.log
+2025-03-27 13:17:06.177	    70613a331c40	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4618	Loading wallet...
+2025-03-27 13:17:08.406	    70613a331c40	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:6119	Loaded wallet keys file, with public address: 44XZ6VTDkGnUiVWiR3JLLR9GFzyFawp47HwSs74dTeSRAAGUwELzupeepKCtMcbWCLhqPDne8StyXH37PYCyWS8KFbThzSL
+2025-03-27 13:17:18.574	    70613a331c40	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):37969
+2025-03-27 13:17:18.890	    70613a331c40	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4690	Starting wallet RPC server
+2025-03-27 13:39:23.002	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-27 13:41:07.981	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-27 13:47:26.775	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:2523	Received money: 0.062266910000, with tx: <1c29c7bba337e17f8a90d604e8438b4e408af308d772bf1e044eda8a6eb1a967>
+2025-03-27 13:52:39.304	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-27 14:02:51.659	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-27 14:57:11.882	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-27 14:57:11.883	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-27 14:58:36.781	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4700	Stopped wallet RPC server
+2025-03-27 14:58:36.781	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4703	Saving wallet...
+2025-03-27 14:58:37.155	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4705	Successfully saved

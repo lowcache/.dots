@@ -13,7 +13,7 @@ elseif platform.is_win then
    mod.SUPER_REV = 'ALT|CTRL'
 elseif platform.is_linux then
    mod.SUPER = 'CTRL' --to not conflict with hyprland  keybinds
-   mod.SUPER_REV = 'CTRL|ALT'
+   mod.SUPER_REV = 'CTRL|SHIFT'
    mod.SUPER_SPC = 'ALT'
 end
 
@@ -23,14 +23,14 @@ local keys = {
    { key = 'F1', mods = 'NONE', action = 'ActivateCopyMode' },
    { key = 'F2', mods = 'NONE', action = act.ActivateCommandPalette },
    { key = 'F3', mods = 'NONE', action = act.ShowLauncher },
-   { key = 'F4', mods = 'NONE', action = act.ShowLauncherArgs({ flags = 'FUZZY|TABS' }) },
+   { key = 'F3', mods = mod.SUPER, action = act.ShowLauncherArgs({ flags = 'FUZZY|TABS' }) },
    {
-      key = 'F5',
-      mods = 'NONE',
+      key = 'F3',
+      mods = mod.SUPER_REV,
       action = act.ShowLauncherArgs({ flags = 'FUZZY|WORKSPACES' }),
    },
-   { key = 'F11', mods = 'NONE',    action = act.ToggleFullScreen },
-   { key = 'F12', mods = 'NONE',    action = act.ShowDebugOverlay },
+   { key = 'F6', mods = 'NONE',    action = act.ToggleFullScreen },
+   { key = 'F7', mods = 'NONE',    action = act.ShowDebugOverlay },
    { key = 'f',   mods = mod.SUPER, action = act.Search({ CaseInSensitiveString = '' }) },
    {
       key = 'u',
@@ -63,22 +63,22 @@ local keys = {
 
    -- tabs --
    -- tabs: spawn+close
-   { key = 't',          mods = mod.SUPER,     action = act.SpawnTab('DefaultDomain') },
+   { key = 't',          mods = mod.SUPER,     action = act.SpawnTab('DefaultDomain') }, 
    { key = 't',          mods = mod.SUPER_REV, action = act.SpawnTab({ DomainName = 'WSL:Ubuntu' }) },
-   { key = 'q',          mods = mod.SUPER,     action = act.CloseCurrentTab({ confirm = false }) },
+   { key = 'F4',          mods = mod.SUPER_SPC,     action = act.CloseCurrentTab({ confirm = true }) },
 
    -- tabs: navigation
-   { key = '[',          mods = mod.SUPER,     action = act.ActivateTabRelative(-1) },
-   { key = ']',          mods = mod.SUPER,     action = act.ActivateTabRelative(1) },
-   { key = '[',          mods = mod.SUPER_REV, action = act.MoveTabRelative(-1) },
-   { key = ']',          mods = mod.SUPER_REV, action = act.MoveTabRelative(1) },
+   { key = 'LeftArrow',          mods = mod.SUPER_SPC,     action = act.ActivateTabRelative(-1) },
+   { key = 'RightArrow',          mods = mod.SUPER_SPC,     action = act.ActivateTabRelative(1) },
+   { key = '<',          mods = mod.SUPER_REV, action = act.MoveTabRelative(-1) },
+   { key = '>',          mods = mod.SUPER_REV, action = act.MoveTabRelative(1) },
 
    -- tab: title
    { key = '0',          mods = mod.SUPER,     action = act.EmitEvent('tabs.manual-update-tab-title') },
    { key = '0',          mods = mod.SUPER_REV, action = act.EmitEvent('tabs.reset-tab-title') },
 
    -- tab: hide tab-bar
-   { key = '9',          mods = mod.SUPER,     action = act.EmitEvent('tabs.toggle-tab-bar'), },
+   { key = 'F12',          mods = 'NONE',     action = act.EmitEvent('tabs.toggle-tab-bar'), },
 
    -- window --
    -- window: spawn windows
@@ -112,69 +112,22 @@ local keys = {
       end)
    },
 
-   -- background controls --
-   {
-      key = [[/]],
-      mods = mod.SUPER,
-      action = wezterm.action_callback(function(window, _pane)
-         backdrops:random(window)
-      end),
-   },
-   {
-      key = [[,]],
-      mods = mod.SUPER,
-      action = wezterm.action_callback(function(window, _pane)
-         backdrops:cycle_back(window)
-      end),
-   },
-   {
-      key = [[.]],
-      mods = mod.SUPER,
-      action = wezterm.action_callback(function(window, _pane)
-         backdrops:cycle_forward(window)
-      end),
-   },
-   {
-      key = [[/]],
-      mods = mod.SUPER_REV,
-      action = act.InputSelector({
-         title = 'InputSelector: Select Background',
-         choices = backdrops:choices(),
-         fuzzy = true,
-         fuzzy_description = 'Select Background: ',
-         action = wezterm.action_callback(function(window, _pane, idx)
-            if not idx then
-               return
-            end
-            ---@diagnostic disable-next-line: param-type-mismatch
-            backdrops:set_img(window, tonumber(idx))
-         end),
-      }),
-   },
-   {
-      key = 'b',
-      mods = mod.SUPER,
-      action = wezterm.action_callback(function(window, _pane)
-         backdrops:toggle_focus(window)
-      end)
-   },
-
    -- panes --
    -- panes: split panes
    {
-      key = [[']],
-      mods = mod.SUPER,
+      key = 'UpArrow',
+      mods = mod.SUPER_SPC,
       action = act.SplitVertical({ domain = 'CurrentPaneDomain' }),
    },
    {
-      key = [[']],
-      mods = mod.SUPER_REV,
+      key = 'DownArrow',
+      mods = mod.SUPER_SPC,
       action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }),
    },
 
    -- panes: zoom+close pane
    { key = 'Enter', mods = mod.SUPER,     action = act.TogglePaneZoomState },
-   { key = 'q',     mods = mod.SUPER_SPC, action = act.CloseCurrentPane({ confirm = false }) },
+   { key = 'F4',     mods = mod.SUPER, action = act.CloseCurrentPane({ confirm = false }) },
 
    -- panes: navigation
    { key = 'k',     mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Up') },
@@ -247,7 +200,7 @@ local mouse_bindings = {
 return {
    disable_default_key_bindings = true,
    -- disable_default_mouse_bindings = true,
-   leader = { key = 'Space', mods = mod.SUPER_REV },
+   leader = { key = 'Space', mods = mod.SUPER },
    keys = keys,
    key_tables = key_tables,
    mouse_bindings = mouse_bindings,

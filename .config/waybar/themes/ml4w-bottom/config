@@ -30,7 +30,7 @@
         "group/links",
 "wlr/taskbar",
         "group/quicklinks",
-//"hyprland/window",
+        "hyprland/window",
     ],
 
     // Modules Center

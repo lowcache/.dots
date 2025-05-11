@@ -1,32 +1,35 @@
-#            _
 #    _______| |__  _ __ ___
 #   |_  / __| '_ \| '__/ __|
 #  _ / /\__ \ | | | | | (__
 # (_)___|___/_| |_|_|  \___|
-#
 # -----------------------------------------------------
-# ML4W zshrc loader
-# -----------------------------------------------------
-
-# DON'T CHANGE THIS FILE
-
-# You can define your custom configuration by adding
-# files in ~/.config/zshrc
-# or by creating a folder ~/.config/zshrc/custom
-# with copies of files from ~/.config/zshrc
+# ML4W zshrc loader- dropdead version
 # -----------------------------------------------------
 
-# -----------------------------------------------------
-# Load modular configarion
-# -----------------------------------------------------
+# DON'T CHANGE THIS FILE (anymore)
 
-for f in ~/.config/zshrc/*; do
-    if [ ! -d $f ]; then
-        c=`echo $f | sed -e "s=.config/zshrc=.config/zshrc/custom="`
-        [[ -f $c ]] && source $c || source $f
+_source_zsh() {
+  # Source files in ~/.config/zshrc/, with custom overrides
+  for f in ~/.config/zshrc/*; do
+    if [ ! -d "$f" ]; then
+      c="${f/.config\/zshrc/.config\/zshrc\/custom}"
+      [[ -f "$c" ]] && source "$c" || source "$f"
     fi
-done
+  done
 
+  # Source files from specified zpaths
+  typeset -ag zpath
+  zpath+=( /usr/share/zsh/plugins/* )
+  zpath+=( "${HOME}/.dotfiles/.config/zshrc/" )
+  zpath+=( /etc/zsh )
+
+  local z="${zpath[*]}"
+
+  for zshd in $(print -rl -- "$z"/*.(z)sh(N)); do
+    source "$zshd"
+  done
+}
+_source_zsh
 # -----------------------------------------------------
 # Load single customization file (if exists)
 # -----------------------------------------------------
@@ -34,3 +37,8 @@ done
 if [ -f ~/.zshrc_custom ]; then
     source ~/.zshrc_custom
 fi
+
+
+
+
+. "$HOME/.local/share/../bin/env"

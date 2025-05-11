@@ -1,1 +1,1 @@
-com.microsoft.Edge
+microsoft-edge-stable

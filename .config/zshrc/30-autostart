@@ -16,6 +16,7 @@
 # Pywal
 # -----------------------------------------------------
 cat ~/.cache/wal/sequences
+# source ~/.cache/wal/colors.sh
 
 # -----------------------------------------------------
 # Fastfetch
@@ -25,3 +26,5 @@ if [[ $(tty) == *"pts"* ]]; then
 fi
 # -----------------------------------------------------
 
+# Disable laptop Hardware keyboard on boot
+hwkbtg -d >/dev/null

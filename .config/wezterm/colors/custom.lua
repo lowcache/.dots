@@ -1,4 +1,4 @@
--- A slightly altered version of catppucchin mocha
+ -- A slightly altered version of catppucchin mocha
 -- stylua: ignore
 local mocha = {
    rosewater = '#f5e0dc',
@@ -27,11 +27,12 @@ local mocha = {
    base      = '#1f1f28',
    mantle    = '#181825',
    crust     = '#11111b',
+   test      = 'rgba(0,0,0,0.2)',
 }
 
 local colorscheme = {
    foreground = mocha.text,
-   background = mocha.base,
+   background = mocha.test,
    cursor_bg = mocha.rosewater,
    cursor_border = mocha.rosewater,
    cursor_fg = mocha.crust,
