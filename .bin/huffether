@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+pyfiglet -f ansi_shadow -w 200 Huff N Puff Ether
+sleep 2
+pyfiglet -f digital an ethernet optimization utility by low-cache
+sleep 2
+
+read -p "Would you like to huff some ether? (Yes/No) " yesno
+case $yesno in
+	[YES,Y,Yes,yes,y]) break ;;
+	[NO,N,No,no,n]) exit 1 ;;
+	)* "Invalid Entry" 2>&1 ;;
+esac
+
+pyfiglet -f blocky Creating a new network profile
+
+# Create a new network profile
+cat << EOF > /etc/netctl/ethernet-profile
+Description='Ethernet Profile'
+Interface=eth0
+ConnectionType=ethernet
+IP=192.168.1.100/24
+DNS=8.8.8.8 8.8.4.4
+EOF
+printf ""
+pyfiglet -f blocky Enabling IPv6 privacy extensions
+# Enable IPv6 privacy extensions
+echo "net.ipv6.conf.all.use_tempaddr = 1" | sudo tee /
+etc/sysctl.d/ipv6-privacy.conf
+echo "net.ipv6.conf.all.temp_prefered_lifetimes = 0" |
+ sudo tee -a /etc/sysctl.d/ipv6-privacy.conf
+echo "net.ipv6.conf.all.use_tempaddr = 1" | sudo tee -a
+ /etc/sysctl.d/ipv6-privacy.conf
+printf "." && printf ".." && printf "..."
+printf ""
+pyfiglet -f blocky Configuringh ethtool settings
+printf ""
+printf "." && printf ".." && printf "..."
+# Configure ethtool settings
+sudo ethtool -K eth0 rx off tx off
+printf "." && printf ".." && printf "..."
+pyfiglet -f blocky Enabling TCP Fast Open
+printf "." && printf ".." && printf "..."
+# Enable TCP Fast Open
+echo "net.core.tfo_early_demux = 1" | sudo tee /etc/sys
+ctl.d/tcp-fast-open.conf
+pyfiglet -f blocky Prioritizing Wired Ethernet Connections
+printf "." && printf ".." && printf "..."
+# Configure network manager to prioritize wired
+ connections
+cat << EOF > /etc/NetworkManager/conf.d/wired-preference
+.conf
+[connection]
+wifi-priority=20
+EOF
+printf "." && printf ".." && printf "..."
+pyfiglet -f blocky Restarting Network Services
+pyfiglet -f digital You may expertience a disruption in the flow of data at this time
+printf "." && printf ".." && printf "..."
+# Restart network services
+sudo systemctl restart netctl
+sudo systemctl restart NetworkManager
+pyfiglet -f blocky Verifying Connection Speed
+printf "." && printf ".." && printf "..."
+# Verify connection speed
+ethtool eth0 | grep Speed

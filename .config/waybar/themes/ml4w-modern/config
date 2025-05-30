@@ -35,7 +35,7 @@
 
     // Modules Center
     "modules-center": [
-        "hyprland/window",
+        //"hyprland/window",
         "custom/empty"
     ],
 
@@ -45,12 +45,12 @@
         "pulseaudio",
 //"backlight",
         "bluetooth",
-"network",
+        "network",
         "battery", 
         "power-profiles-daemon",
         "group/hardware",
         "group/tools",
-"tray",
+        "tray",
         "custom/notification",
         "custom/exit",
         "custom/ml4w-welcome",

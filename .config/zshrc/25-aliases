@@ -54,12 +54,12 @@ alias flat='flatpak'
 alias c='clear'
 alias nf='fastfetch'               
 alias wifi='nmtui'
-alias cleanup='~/.config/ml4w/scripts/cleanup.sh'
+
 
 # -----------------------------------------------------
 # ML4W Apps
 # -----------------------------------------------------
-
+alias cleanup='~/.config/ml4w/scripts/cleanup.sh'
 alias ml4w='com.ml4w.welcome'
 alias ml4w-settings='com.ml4w.dotfilessettings'
 alias ml4w-hyprland='com.ml4w.hyprland.settings'
@@ -76,34 +76,29 @@ alias ml4w-dots='cd ~/.dotfiles/'
 # ----------------------------------------------------
 # GIT
 # ----------------------------------------------------
-
 alias gitup='git add .; git commit -m ''; git push -u origin main'
 alias gclone='git clone https://github.com/'
 
 # -----------------------------------------------------
 # Window Managers
 # -----------------------------------------------------
-
 # alias Qtile='startx'
 # Hyprland with Hyprland
 
 # -----------------------------------------------------
 # Scripts
 # -----------------------------------------------------
-
 alias ascii='~/.config/ml4w/scripts/figlet.sh'
 
 # -----------------------------------------------------
 # System
 # -----------------------------------------------------
-
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias update-sysd='mkinitcpio -P'
 
 # -----------------------------------------------------
 # Aliases
 # -----------------------------------------------------
-
 alias -g edge='com.microsoft.Edge'
 alias -g msedge='edge'
 alias -s conf=micro
@@ -177,7 +172,6 @@ alias CO="./configure"
 ## Execute \kbd{./configure --help}
 alias CH="./configure --help"
 alias -s pl='perl -S'
-
 alias make="make -j`nproc`"
 alias ninja="ninja -j`nproc`"
 alias n="ninja"
@@ -186,22 +180,17 @@ alias rmpkg="sudo pacman -Rsn"
 alias cleanch="sudo pacman -Scc"
 alias fixpacman="sudo rm /var/lib/pacman/db.lck"
 alias update="sudo pacman -Syu"
-
 # Help people new to Arch
 alias apt="man pacman"
 alias apt-get="man pacman"
 alias please="sudo"
 alias tb="nc termbin.com 9999"
-
 # Cleanup orphaned packages
 alias cleanup="sudo pacman -Rsn (pacman -Qtdq)"
-
 # Get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
-
 # Recent installed packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
-
 # Wireguard
 alias anon='wg-quick up vpnac'
 alias kpub='wg-quick down vpnac'

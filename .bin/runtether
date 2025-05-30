@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # USB Tethering Script - Final Version with Automatic Interface Detection
 # This script enables reliable sharing of an Android phone's data connection

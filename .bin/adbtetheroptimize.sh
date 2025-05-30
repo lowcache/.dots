@@ -9,12 +9,10 @@ GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 BLUE='\033[0;36m'
 NC='\033[0m' # No Color
-
+SUDO=''
 # Check if running with sudo
 if [[ $EUID -ne 0 ]]; then
-    echo -e "${RED}This script must be run as root or with sudo privileges.${NC}"
-    echo -e "${YELLOW}Please run: sudo $0${NC}"
-    exit 1
+    SUDO='sudo'
 fi
 
 # Detect active tethering connection
@@ -62,35 +60,35 @@ optimize_tcp() {
     echo -e "${BLUE}Optimizing TCP parameters for better throughput...${NC}"
     
     # Increase buffer sizes
-    sysctl -w net.core.rmem_max=16777216 >/dev/null 2>&1
-    sysctl -w net.core.wmem_max=16777216 >/dev/null 2>&1
-    sysctl -w net.ipv4.tcp_rmem="4096 87380 16777216" >/dev/null 2>&1
-    sysctl -w net.ipv4.tcp_wmem="4096 65536 16777216" >/dev/null 2>&1
+    $SUDO sysctl -w net.core.rmem_max=16777216 >/dev/null 2>&1
+    $SUDO sysctl -w net.core.wmem_max=16777216 >/dev/null 2>&1
+    $SUDO sysctl -w net.ipv4.tcp_rmem="4096 87380 16777216" >/dev/null 2>&1
+    $SUDO sysctl -w net.ipv4.tcp_wmem="4096 65536 16777216" >/dev/null 2>&1
     
     # Enable window scaling
-    sysctl -w net.ipv4.tcp_window_scaling=1 >/dev/null 2>&1
+    $SUDO sysctl -w net.ipv4.tcp_window_scaling=1 >/dev/null 2>&1
     
     # Enable fast TCP
-    sysctl -w net.ipv4.tcp_fastopen=3 >/dev/null 2>&1
+    $SUDO sysctl -w net.ipv4.tcp_fastopen=3 >/dev/null 2>&1
     
     # Try different congestion control algorithms
     local available_cc=$(sysctl net.ipv4.tcp_available_congestion_control | cut -d= -f2)
     
     if [[ "$available_cc" == *"bbr"* ]]; then
         echo -e "${GREEN}Enabling BBR congestion control (often better for cellular connections)${NC}"
-        sysctl -w net.ipv4.tcp_congestion_control=bbr >/dev/null 2>&1
+        $SUDO sysctl -w net.ipv4.tcp_congestion_control=bbr >/dev/null 2>&1
     elif [[ "$available_cc" == *"cubic"* ]]; then
         echo -e "${GREEN}Enabling CUBIC congestion control${NC}"
-        sysctl -w net.ipv4.tcp_congestion_control=cubic >/dev/null 2>&1
+        $SUDO sysctl -w net.ipv4.tcp_congestion_control=cubic >/dev/null 2>&1
     fi
     
     # Enable timestamps and SACK
-    sysctl -w net.ipv4.tcp_timestamps=1 >/dev/null 2>&1
-    sysctl -w net.ipv4.tcp_sack=1 >/dev/null 2>&1
+    $SUDO sysctl -w net.ipv4.tcp_timestamps=1 >/dev/null 2>&1
+    $SUDO sysctl -w net.ipv4.tcp_sack=1 >/dev/null 2>&1
     
     # Improve responsiveness
-    sysctl -w net.ipv4.tcp_thin_linear_timeouts=1 >/dev/null 2>&1
-    sysctl -w net.ipv4.tcp_early_retrans=1 >/dev/null 2>&1
+    $SUDO sysctl -w net.ipv4.tcp_thin_linear_timeouts=1 >/dev/null 2>&1
+    $SUDO sysctl -w net.ipv4.tcp_early_retrans=1 >/dev/null 2>&1
     
     echo -e "${GREEN}TCP stack optimized for better throughput.${NC}"
 }
@@ -102,18 +100,18 @@ optimize_interface() {
     echo -e "${BLUE}Optimizing network interface ${iface}...${NC}"
     
     # Increase txqueuelen
-    ip link set dev $iface txqueuelen 1000 2>/dev/null
+    $SUDO ip link set dev $iface txqueuelen 1000 2>/dev/null
     
     # Check if ethtool is available
     if command -v ethtool &> /dev/null; then
         # Disable energy-efficient ethernet
-        ethtool --set-eee $iface eee off 2>/dev/null
+        $SUDO ethtool --set-eee $iface eee off 2>/dev/null
         
         # Maximize ring buffer sizes
-        ethtool -G $iface rx 4096 tx 4096 2>/dev/null
+        $SUDO ethtool -G $iface rx 4096 tx 4096 2>/dev/null
         
         # Offload as much as possible to hardware
-        ethtool -K $iface tso on gso on gro on 2>/dev/null
+        $SUDO ethtool -K $iface tso on gso on gro on 2>/dev/null
     else
         echo -e "${YELLOW}ethtool not found. Skipping some optimizations.${NC}"
         echo -e "${YELLOW}Install ethtool for better performance: sudo pacman -S ethtool${NC}"
@@ -170,10 +168,10 @@ optimize_mtu() {
         done
         
         echo -e "${GREEN}Setting optimal MTU to $best_mtu${NC}"
-        ip link set dev $iface mtu $best_mtu 2>/dev/null
+        $SUDO ip link set dev $iface mtu $best_mtu 2>/dev/null
     else
         echo -e "${YELLOW}No internet connectivity. Setting default MTU to 1440${NC}"
-        ip link set dev $iface mtu 1440 2>/dev/null
+        $SUDO ip link set dev $iface mtu 1440 2>/dev/null
     fi
 }
 
@@ -201,15 +199,7 @@ run_speed_test() {
     curl -s -o /dev/null http://speedtest.ftp.otenet.gr/files/test10Mb.db
     local dl_end=$(date +%s.%N)
     local dl_duration=$(echo "$dl_end - $dl_start" | bc)
-    local dl_speed=$(echo "scale=2; 10 * 8 / $dl_duration" | bc)
-    echo -e "${GREEN}Download speed: ${dl_speed} Mbps${NC}"
-    
-    # Store results for comparison
-    echo "$dl_speed" > /tmp/tether_speed_before.txt
-    
-    return 0
-}
-
+     
 # Disable USB power management
 disable_usb_power_management() {
     echo -e "${BLUE}Disabling USB power management to prevent throttling...${NC}"

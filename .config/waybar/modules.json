@@ -145,7 +145,7 @@
   // Rofi Application Launcher
   "custom/appmenu": {
     // START APPS LABEL
-    "format": "Apps",
+    "format": "",
     // END APPS LABEL
     "on-click": "sleep 0.2;pkill rofi || rofi -show drun -replace",
     "on-click-right": "~/.config/hypr/scripts/keybindings.sh",
@@ -290,7 +290,7 @@
     "modules": [
       "custom/tools",
       "custom/cliphist",
-      //"custom/hypridle",
+//      "custom/hypridle",
       "custom/hyprshade"
     ]
   },

@@ -37,3 +37,7 @@ if [ -f ~/.bashrc_custom ]; then
 fi
 
 . "$HOME/.local/share/../bin/env"
+
+
+# Enables autocompletion of options for bashfuscator
+eval "$(/usr/bin/register-python-argcomplete bashfuscator)"

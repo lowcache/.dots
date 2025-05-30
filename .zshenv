@@ -29,14 +29,13 @@ fi
 # generic $PATH handling
 if (( EUID != 0 )); then
   path=(
-    $HOME/bin
     /usr/local/bin
-    /usr/bin
-    /bin
     /usr/local/sbin
-    /usr/sbin
-    /sbin
     /usr/local/games
+    /bin
+    /sbin
+    /usr/bin
+    /usr/sbin
     /usr/games
     $HOME/bin
     $HOME/.bin
@@ -73,7 +72,7 @@ if (( $#lp > 0 )) && [[ -x $lp[1] ]] ; then
     export LESSOPEN="|lesspipe %s"
 elif [[ -x /usr/bin/lesspipe.sh ]] ; then
     export LESSOPEN="|lesspipe.sh %s"
-fi
+fi 
 unset lp
 # set environment variables (important for autologin on tty)
 export READNULLCMD=${PAGER:-/usr/bin/pager}
@@ -84,6 +83,10 @@ export WRITE_ON_UDEV=yes
 ZDOTDIR=${ZDOTDIR:-${HOME}}
 ZSHDDIR=${ZSHDDIR:-${ZDOTDIR}/dotfiles/.config/zshrc}
 FIZSHDIR=${FIZSHDIR:-${ZSHDDIR}/.fizsh}
+DOTDIR=${DOTDIR:-${HOME}/.dotfiles}
+ML4W=${ML4W:-${DOTDIR}/.config/ml4w}
+ML4W_SETTINGS=${ML4W_SETTINGS:-${ML4W}/settings}
+WALLPAPERS=${WALLPAPERS:-${XDG_PICTURES_DIR}/wallbangers}
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_DATA_HOME="${HOME}/.local/share"
@@ -93,29 +96,39 @@ export XDG_DATA_DIRS="/usr/local/share:/usr/share:/var/lib/flatpak/exports/share
 export XDG_DOWNLOAD_DIR="${HOME}/Downloads"
 export XDG_PICTURES_DIR="${HOME}/Pictures"
 export EDITOR="/usr/bin/micro"
-export BROWSER="com.microsoft.Edge"
+export BROWSER="/usr/bin/microsoft-edge-stable"
 export VISUAL="micro"
-export TMP="$HOME/tmp"
-export TEMP="$TMP"
-export TMPDIR="$TMP"
-export TMPPREFIX="${TMPDIR}/zsh"
-if [ ! -d "${TMP}" ]; then mkdir "${TMP}"; fi
+export MPLCONFIGDIR="${HOME}/.cache/matplotlib"
+# -------------------
+# /TMP $HOME/TMP
+# -------------------
+export TEMP="$HOME/tmp"
+export TMP="/tmp"
+export TMPDIR="$TEMP"
+export TMPPREFIX="${TEMP}/zsh"
+if [ ! -d "${TEMP}" ]; then mkdir "${TEMP}"; fi
 # Use hostname in TMUX_TMPDIR as $HOME may be on nfs.
 export TMUX_TMPDIR="${TMPDIR}/tmux-${HOST}-${UID}"
 if [ ! -d "${TMUX_TMPDIR}" ]; then mkdir -p "${TMUX_TMPDIR}"; fi
+# -------------------
 # history
-#v#
-HISTFILE=${HISTFILE:-${ZDOTDIR:-${HOME}}/.zsh_history}
-HISTSIZE=5000
+# -------------------
+HISTFILE=${HISTFILE:-${ZDOTDIR}/.zsh_history}
+HISTSIZE=100000
 SAVEHIST=10000 # useful for setopt append_history
 # dirstack handling
-DIRSTACKSIZE=${DIRSTACKSIZE:-20}
-DIRSTACKFILE=${DIRSTACKFILE:-${ZDOTDIR:-${HOME}}/.zdirs}
+DIRSTACKSIZE=${DIRSTACKSIZE:-40}
+DIRSTACKFILE=${DIRSTACKFILE:-${ZDOTDIR}/.zdirs}
+# --------------------
+# MONERO
+# --------------------
+# ADD Monero PATHs/ADDYs/KEYS etc etc
+# Reserved Monero Line1 
+# Reserved Monero Line2
+
+# Begin added by argcomplete
+fpath=( /usr/lib/python3.13/site-packages/argcomplete/bash_completion.d "${fpath[@]}" )
+# End added by argcomplete
 
 ## END OF FILE #################################################################
 # vim:filetype=zsh foldmethod=marker autoindent expandtab shiftwidth=4
-
-
-
-
-
