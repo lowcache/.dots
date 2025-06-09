@@ -1,0 +1,2 @@
+[pyprland]
+include = ["~/.dotfiles/.config/hypr/conf/pypr.d/"]

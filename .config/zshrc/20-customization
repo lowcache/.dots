@@ -15,39 +15,53 @@
 # -----------------------------------------------------
 source <(fzf --zsh)
 
-# zsh history
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-setopt appendhistory
+# confirmity
+confirm() {
+    local answer
+    echo -ne "zsh: sure you want to run '$*' [yN]? "
+    read -q answer
+        echo
+    if [[ "${answer}" =~ ^[Yy]$ ]]; then
+        command "${@}"
+    else
+        return 1
+    fi
+}
 
+confirm_wrapper() {
+    local -i as_root prefix
+    if [ "$1" = '--root' ]; then
+        as_root='true'
+        shift
+    elif [ "$1" = '--user' ]; then
+        prefix='$2'
+        confirm $(prefix)
+    fi
+    if [ "${as_root}" = 'true' ] && [ "${USER}" != 'root' ]; then
+        prefix="sudo"
+        confirm $(prefix) "$@"
+    fi
+}
+
+poweroff() { confirm_wrapper --root $0 "$@"; }
+reboot() { confirm_wrapper --root $0 "$@"; }
+reload() { cofirm_wrapper --user $(exec "${SHELL}" "$@"); }
 # -----------------------------------------------------
 # Prompt
 # -----------------------------------------------------
 
 # starship checks
-prompt101() {
-   local starconf="/home/$USER/.config/starship.toml"
-   local backconf="/home/$USER/.dotfiles/starship.toml"
-   if check_com -c starship; then
-      if [ $starconf = true ] || [ $backconf = true ]; then
-         if [ $backconf = true ] && [ $starconf = false ]; then
-            ln /home/$USER/.dotfiles/starship.toml /home/$USER/.config/starship.toml
-         fi  
-         eval "$(starship init zsh)"
-      else
-         starship preset -o $backconf gruvbox-rainbow
-         ln ${HOME}/.dotfiles/starship.toml ${HOME}/.config/starship.toml
-         eval "$(starship init zsh)"
-      fi
-   else #install starship
-      sudo pacman --needed --noconfirm -S starship >/dev/null 2>&1
-   fi
-}
-
-if check_com -c starship && [ -f ${HOME}/.config/starship.toml ]; then
-   eval "$(starship init zsh)"
-else
-   prompt101
+# Load starship theme
+# line 1: `starship` binary as command, from github release
+# line 2: starship setup at clone(create init.zsh, completion)
+# line 3: pull behavior same as clone, source init.zsh
+zinit ice as"command" from"gh-r" \
+          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+          atpull"%atclone" src"init.zsh"
+zinit light starship/starship
+    
+  
+if [[ $(tty) == *"pts"* ]]; then
+    fastfetch
 fi
 ###################################### END OF FILE ###################

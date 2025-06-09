@@ -1,0 +1,14 @@
+pyprlands.plugins = [ "scratchpads" ]
+
+[scratchpads.term]
+animation = "fromTop"
+command = "wezterm start --class term_quake"
+class = "term_quake"
+size = "75% 30%"
+
+[scratchpad.text]
+animation = "fromLeft"
+command = "gnome-text-editor"
+class = "org.gnome.TextEditor"
+size = "30% 75%"
+

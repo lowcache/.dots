@@ -99,18 +99,18 @@ alias update-sysd='mkinitcpio -P'
 # -----------------------------------------------------
 # Aliases
 # -----------------------------------------------------
-alias -g edge='com.microsoft.Edge'
+alias -g edge='microsoft-edge-stable'
 alias -g msedge='edge'
 alias -s conf=micro
 alias -s html=edge
 alias -s org=edge
 alias -s net=edge
 alias -s png=krita
-alias -s zsh=nvim
-alias -s zshrc=nvim
-alias -s local=nvim
+alias -s zsh=micro
+alias -s zshrc=micro
+alias -s local=micro
 alias -s kra=krita
-alias -s py=nvim
+alias -s py=micro
 alias -s zip=Xarchiver
 alias -s tar=Xarchiver
 ## translate

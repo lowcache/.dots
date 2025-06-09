@@ -9,29 +9,20 @@
 #
 # Filename:      zshenv
 # Purpose:       system-wide .zshenv file for zsh(1)
-# Authors:       grml-team (grml.org)
-# Massive edits, additions, deletions, and updates/upgrade were required to 
-# get the code to function at all, if not correctly, these edits are an amalgam
-# of original code, from additional open sources, and grml's own zsh-lovers. 
-# The edits, cuts, slashes, slices, and repeated testing done by drpdead@github aka dropDEADRedd
-# License:       This file is licensed under Beerware
-################################################################################
-# no xsource() here because it's only created in zshrc! (which is good)
-[[ -r /etc/environment ]] && source /etc/environment
-TSCHOSTNAME="quail-ghoul.ts.net"
-HOSTNAME=${HOSTNAME:-${TSCHOSTNAME}}
+
 # make sure /usr/bin/id is available
 if [[ -x /usr/bin/id ]] ; then
     [[ -z "$USER" ]] && export USER=$(/usr/bin/id -un)
     [[ $LOGNAME == LOGIN ]] && LOGNAME=$(/usr/bin/id -un)
 fi
-    
+
 # generic $PATH handling
 if (( EUID != 0 )); then
   path=(
     /usr/local/bin
     /usr/local/sbin
     /usr/local/games
+    /usr/lib/ccache/bin
     /bin
     /sbin
     /usr/bin
@@ -81,7 +72,7 @@ export DISTCC_HOSTS="+zeroconf"
 # MAKEDEV should be usable on udev as well by default:
 export WRITE_ON_UDEV=yes
 ZDOTDIR=${ZDOTDIR:-${HOME}}
-ZSHDDIR=${ZSHDDIR:-${ZDOTDIR}/dotfiles/.config/zshrc}
+ZSHDDIR=${ZSHDDIR:-${ZDOTDIR}/.dotfiles/.config/zshrc}
 FIZSHDIR=${FIZSHDIR:-${ZSHDDIR}/.fizsh}
 DOTDIR=${DOTDIR:-${HOME}/.dotfiles}
 ML4W=${ML4W:-${DOTDIR}/.config/ml4w}
@@ -115,7 +106,8 @@ if [ ! -d "${TMUX_TMPDIR}" ]; then mkdir -p "${TMUX_TMPDIR}"; fi
 # -------------------
 HISTFILE=${HISTFILE:-${ZDOTDIR}/.zsh_history}
 HISTSIZE=100000
-SAVEHIST=10000 # useful for setopt append_history
+SAVEHIST=10000 # useful for 
+setopt append_history
 # dirstack handling
 DIRSTACKSIZE=${DIRSTACKSIZE:-40}
 DIRSTACKFILE=${DIRSTACKFILE:-${ZDOTDIR}/.zdirs}
